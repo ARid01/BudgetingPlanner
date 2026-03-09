@@ -242,7 +242,7 @@ function updateChart() {
     if (endBalance < startBalance) {
         trendElement.textContent = '⚠ Warning: Downward Trend Detected!';
         trendElement.style.color = 'red';
-    } else if (startBalance > endBalance){
+    } else if (endBalance > startBalance) {
         trendElement.textContent = '✅ Your balance trends upward.';
         trendElement.style.color = 'green';
     } else {
