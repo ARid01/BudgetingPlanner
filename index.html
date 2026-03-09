@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Budgeting Planner</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+    </head>
+
+    <body>
+        <div id="header">
+            <h1 id="budget-title">Budgeting Planner</h1>
+            <h4 id="credit">Created by Andrew Ridgely, 2026</h4>
+            <button id="dark-toggle">🌙 Dark Mode</button>
+        </div>
+
+        <div class="main-container">
+            <div class="transactions-container">
+                <h2>Transactions</h2>
+                <input type="number" id="startingBalance" placeholder="Starting Balance" required><span id="balance-spacer">&nbsp;</span>
+                <input type="number" id="extrapolateMonths" placeholder="Months To Extrapolate" value="1" min="1" required>
+                <button id="extrapolate" onClick="extrapolateTo()">Extrapolate</button>
+                <button id="download-image" onClick="downloadImage()">Download Image</button>
+                <button id="download-csv" onClick="downloadCSV()">Download CSV</button>
+                <button id="clear-data" onClick="clearData()">Clear Data</button>
+                <br><br>
+                <form id="transaction-form">
+                    <input type="text" id="description" placeholder="Description" required>
+                    <input type="float" id="amount" placeholder="Amount" required>
+                    <input type="number" id="day" placeholder="Day" required>
+                    <select id="type">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <select id="recurrence">
+                        <option value="none">One-Time</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="biweekly">Biweekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                    <button type="submit">Add</button>
+                </form>
+                <div id="transaction-cards"></div>
+                <ul id="transaction-list"></ul>
+            </div>
+            <div class="chart-container">
+                <h2>Balance Over Time</h2>
+                <canvas id="balance-chart" width="400" height="200"></canvas>
+                <div id="trend-warning"></div>
+                <div id="summary">
+                    Projected End Balance: <span id="projected-balance"></span><br>
+                    Total Income: <span id="total-income"></span><br>
+                    Total Expenses: <span id="total-expenses"></span><br><br>
+                    Lowest Balance: <span id="lowest-balance"></span><br>
+                    Date: <span id="lowest-date"></span>
+                </div>
+            </div>
+        </div>
+    </body>
